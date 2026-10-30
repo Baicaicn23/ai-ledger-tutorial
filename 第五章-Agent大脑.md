@@ -69,6 +69,10 @@ Key 为空时返回 `None`，`chat()` 里会回一条「还没配置 Key」的�
 
 项目里一共四个工具：`add_expense`、`list_expenses`、`get_summary`、`delete_expense`——记账、查账、统计、删除，正好覆盖账本的全部操作。
 
+点开下面任意一个工具，看看它的说明、参数示例和真实调用效果：
+
+<div data-widget="tools"></div>
+
 ## 5.3 核心循环
 
 `agent.py` 的 `chat()` 就是全书的心脏，完整读一遍：
@@ -167,7 +171,11 @@ SYSTEM_PROMPT = f"""你是「小账本」的 AI 记账助手，今天日期是 {
 
 ## 5.6 完整的一次往返
 
-以「午饭花了 25 块」为例，`messages` 的演变：
+先动手点一遍——下面把同一次往返拆成 5 步，每步都能看到真实的消息内容：
+
+<div data-widget="agent-loop"></div>
+
+静态对照，`messages` 的演变：
 
 ```
 [system] 你是「小账本」的 AI 记账助手…

@@ -1,0 +1,275 @@
+/* 互动教学组件样式（与纸感主题一致） */
+
+.wgt {
+  margin: 1.8em 0;
+  padding: 20px 22px;
+  background: var(--sheet, #FFFDF7);
+  border: 1px solid var(--line, #E3DDCE);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px -34px rgba(35, 39, 30, .5);
+}
+
+.wgt-head { margin-bottom: 14px; }
+.wgt-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--green, #1F4D3A);
+  letter-spacing: .02em;
+}
+.wgt-sub {
+  margin-top: 3px;
+  font-size: 12.5px;
+  color: var(--muted, #6E7366);
+}
+
+/* 流程节点 */
+.wgt-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  background: var(--paper, #F6F3EA);
+  border-radius: 10px;
+}
+.wgt-node {
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 12.5px;
+  color: var(--muted, #6E7366);
+  background: #fff;
+  border: 1px solid var(--line, #E3DDCE);
+  transition: all .2s;
+}
+.wgt-node.is-active {
+  color: #fff;
+  background: var(--green, #1F4D3A);
+  border-color: var(--green, #1F4D3A);
+  font-weight: 600;
+}
+.wgt-arrow { color: #B4B7AA; font-size: 13px; }
+
+/* 步骤 */
+.wgt-steps { list-style: none; margin: 0; padding: 0; }
+.wgt-step {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin: 2px 0;
+  cursor: pointer;
+  transition: background .15s;
+}
+.wgt-step:hover { background: #F9F5E9; }
+.wgt-step.is-current {
+  border-color: var(--code-line, #EADFC8);
+  background: #FBF6EA;
+}
+.wgt-step-head { display: flex; align-items: center; gap: 10px; }
+.wgt-num {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted, #6E7366);
+  background: #EFEBDD;
+}
+.wgt-step.is-current .wgt-num { color: #fff; background: var(--seal, #C2402A); }
+.wgt-step.is-done .wgt-num { color: #fff; background: var(--green, #1F4D3A); }
+.wgt-step.is-done .wgt-step-title { color: #9AA08F; }
+.wgt-step-title { font-size: 14px; font-weight: 700; color: var(--text, #2B2F26); }
+.wgt-step-body { display: none; padding: 8px 0 4px 32px; }
+.wgt-step.is-current .wgt-step-body { display: block; }
+.wgt-desc { margin: 0 0 10px; font-size: 13.5px; line-height: 1.75; color: #4A5044; }
+.wgt-plabel {
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--muted, #6E7366);
+  margin-bottom: 4px;
+}
+.wgt-payload {
+  margin: 0;
+  padding: 12px 14px;
+  background: #262B23;
+  color: #E8E4D8;
+  border-radius: 9px;
+  font-family: "JetBrains Mono", Menlo, Monaco, monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+.wgt-payload.is-reply {
+  background: #EEF2E8;
+  color: #2B2F26;
+  border: 1px solid #D9E2D4;
+}
+
+/* 控制条 */
+.wgt-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.wgt-btn {
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 9px;
+  border: 1px solid var(--line, #E3DDCE);
+  background: #fff;
+  color: var(--text, #2B2F26);
+  cursor: pointer;
+  transition: all .15s;
+}
+.wgt-btn:hover:not(:disabled) { border-color: var(--green, #1F4D3A); color: var(--green, #1F4D3A); }
+.wgt-btn:disabled { opacity: .4; cursor: default; }
+.wgt-btn-primary {
+  background: var(--green, #1F4D3A);
+  border-color: var(--green, #1F4D3A);
+  color: #fff;
+}
+.wgt-btn-primary:hover:not(:disabled) { background: var(--green-deep, #173B2C); color: #fff; }
+.wgt-progress {
+  margin-left: auto;
+  font-size: 12.5px;
+  color: var(--muted, #6E7366);
+  font-family: "JetBrains Mono", Menlo, monospace;
+}
+
+/* ---------- 架构探索器 ---------- */
+.wgt-arch-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.wgt-arch-tab {
+  font: inherit;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--line, #E3DDCE);
+  background: #fff;
+  color: var(--text, #2B2F26);
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: all .15s;
+}
+.wgt-arch-tab small { display: block; font-weight: 400; font-size: 11px; color: var(--muted, #6E7366); margin-top: 1px; }
+.wgt-arch-tab.is-active {
+  background: var(--green-soft, #E9EFE7);
+  border-color: var(--green, #1F4D3A);
+  color: var(--green, #1F4D3A);
+}
+.wgt-arch-panel {
+  padding: 16px 18px;
+  background: var(--paper, #F6F3EA);
+  border-radius: 10px;
+}
+.wgt-arch-file {
+  display: inline-block;
+  font-family: "JetBrains Mono", Menlo, monospace;
+  font-size: 12px;
+  color: var(--seal, #C2402A);
+  background: #fff;
+  border: 1px solid var(--line, #E3DDCE);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-bottom: 10px;
+}
+.wgt-arch-desc { margin: 0 0 8px; font-size: 14px; line-height: 1.8; }
+.wgt-arch-metaphor { margin: 0 0 10px; font-size: 13px; color: var(--muted, #6E7366); }
+.wgt-arch-code {
+  margin: 0;
+  font-family: "JetBrains Mono", Menlo, monospace;
+  font-size: 12.5px;
+  color: var(--green, #1F4D3A);
+  background: #fff;
+  border: 1px dashed var(--line, #E3DDCE);
+  border-radius: 8px;
+  padding: 10px 12px;
+  overflow-x: auto;
+}
+
+/* ---------- 工具卡片 ---------- */
+.wgt-tools { display: grid; gap: 10px; }
+.wgt-tool {
+  border: 1px solid var(--line, #E3DDCE);
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.wgt-tool-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 11px 16px;
+  cursor: pointer;
+  background: #FBF8F0;
+}
+.wgt-tool-head code {
+  font-family: "JetBrains Mono", Menlo, monospace;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--green, #1F4D3A);
+  background: transparent;
+  padding: 0;
+}
+.wgt-tool-sign { font-size: 12.5px; color: var(--muted, #6E7366); }
+.wgt-tool-arrow { margin-left: auto; color: #B4B7AA; font-size: 12px; transition: transform .15s; }
+.wgt-tool.is-open .wgt-tool-arrow { transform: rotate(90deg); }
+.wgt-tool-body { display: none; padding: 12px 16px 14px; }
+.wgt-tool.is-open .wgt-tool-body { display: block; }
+.wgt-tool-body p { margin: 0 0 10px; font-size: 13.5px; line-height: 1.75; }
+.wgt-tool-body .wgt-plabel { margin-top: 8px; }
+.wgt-tool-body pre {
+  margin: 0 0 8px;
+  padding: 10px 12px;
+  background: #262B23;
+  color: #E8E4D8;
+  border-radius: 8px;
+  font-family: "JetBrains Mono", Menlo, monospace;
+  font-size: 12.5px;
+  overflow-x: auto;
+}
+.wgt-tool-effect { font-size: 12.5px; color: var(--muted, #6E7366); }
+
+@media (max-width: 720px) {
+  .wgt { padding: 14px 14px; }
+  .wgt-step-body { padding-left: 0; }
+  .wgt-controls { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wgt-node, .wgt-btn, .wgt-tool-arrow { transition: none; }
+}
+
+/* 压过主题里 .markdown-section pre 的样式（选择器优先级） */
+.markdown-section .wgt pre {
+  margin: 0;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 9px;
+  background: #262B23;
+  color: #E8E4D8;
+  box-shadow: none;
+  font-family: "JetBrains Mono", Menlo, Monaco, monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  overflow: auto;
+  position: static;
+}
+.markdown-section .wgt pre.is-reply {
+  background: #EEF2E8;
+  color: #2B2F26;
+  border: 1px solid #D9E2D4;
+}
+.markdown-section .wgt .wgt-arch-code {
+  background: #fff;
+  color: var(--green, #1F4D3A);
+  border: 1px dashed var(--line, #E3DDCE);
+}
+.markdown-section .wgt .wgt-tool-body pre {
+  background: #262B23;
+  color: #E8E4D8;
+}

@@ -86,6 +86,7 @@ body {
   color: #7C8172;
 }
 .sidebar ul li ul li a::before { content: none; }
+.sidebar ul li ul li::before { content: none; }
 .sidebar ul li ul li.active > a {
   border-left: none;
   padding-left: 42px;

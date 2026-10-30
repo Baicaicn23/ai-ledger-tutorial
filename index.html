@@ -6,16 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="一个 Python + Agent 全栈项目的从零构建教程">
 <link rel="stylesheet" href="assets/vue.css">
-<link rel="stylesheet" href="assets/prism-tomorrow.min.css">
 <link rel="stylesheet" href="assets/theme.css">
 </head>
 <body>
 <div id="app">正在加载教程…</div>
 
-<script src="assets/prism.min.js"></script>
-<script src="assets/prism-python.min.js"></script>
-<script src="assets/prism-bash.min.js"></script>
-<script src="assets/prism-json.min.js"></script>
 <script>
   window.$docsify = {
     name: '从零开始构建 AI 记账助手',
@@ -29,9 +24,27 @@
       noData: '没有找到相关内容',
       depth: 3,
     },
+    plugins: [
+      function (hook) {
+        hook.doneEach(function () {
+          if (!window.Prism) return;
+          document.querySelectorAll('.markdown-section pre > code').forEach(function (el) {
+            if (el.dataset.highlighted) return;
+            var m = el.className.match(/lang-([a-z0-9]+)/i);
+            if (!m || !Prism.languages[m[1]]) return;
+            el.innerHTML = Prism.highlight(el.textContent, Prism.languages[m[1]], m[1]);
+            el.dataset.highlighted = '1';
+          });
+        });
+      },
+    ],
   };
 </script>
 <script src="assets/docsify.min.js"></script>
 <script src="assets/docsify-search.min.js"></script>
+<!-- docsify 内置了 Prism 内核，语言组件必须在 docsify 之后加载才能挂到它的实例上 -->
+<script src="assets/prism-python.min.js"></script>
+<script src="assets/prism-bash.min.js"></script>
+<script src="assets/prism-json.min.js"></script>
 </body>
 </html>

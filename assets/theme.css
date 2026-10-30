@@ -1,213 +1,294 @@
-/* 小账本主题：纸感底色 + 墨绿 + 印章红 */
+/* 小账本主题 v2：纸感 + 墨绿 + 印章红 */
 :root {
   --paper: #F6F3EA;
   --sheet: #FFFDF7;
   --ink: #23271E;
+  --text: #2B2F26;
   --green: #1F4D3A;
   --green-deep: #173B2C;
+  --green-soft: #E9EFE7;
   --seal: #C2402A;
-  --muted: #7C8072;
-  --line: #E5DFD1;
+  --muted: #6E7366;
+  --line: #E3DDCE;
+  --code-bg: #FBF6EA;
+  --code-line: #EADFC8;
   --theme-color: #1F4D3A;
 }
 
 body {
   background: var(--paper);
-  color: var(--ink);
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  color: var(--text);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- 侧边栏 ---------- */
+/* ============ 侧边栏 ============ */
 .sidebar {
+  width: 290px;
   background: var(--sheet);
   border-right: 1px solid var(--line);
-  color: var(--ink);
-  padding: 20px 0 40px;
+  color: var(--text);
+  padding: 0 0 40px;
 }
+.content { left: 290px; }
+
 .sidebar .app-name {
-  padding: 8px 24px 18px;
-  margin-bottom: 8px;
+  margin: 0;
+  padding: 26px 24px 16px;
   border-bottom: 2px solid var(--ink);
 }
 .sidebar .app-name a {
   color: var(--green);
+  font-size: 19px;
   font-weight: 800;
-  font-size: 18px;
-  letter-spacing: .06em;
-  line-height: 1.4;
+  letter-spacing: .05em;
+  line-height: 1.45;
 }
-.sidebar ul {
+
+.sidebar .search { margin: 14px 18px 10px; border-bottom: none; }
+.sidebar .search input {
+  width: 100%;
   margin: 0;
-  padding: 0 0 8px;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--paper);
+  color: var(--text);
+  font-size: 13px;
 }
+.sidebar .search input::placeholder { color: #A6AA9B; }
+.sidebar .search input:focus { outline: 2px solid var(--green); outline-offset: 0; }
+
+.sidebar ul { margin: 0; padding: 4px 0 12px; }
+.sidebar ul li { margin: 0; }
 .sidebar ul li a {
-  color: #3C4237;
+  display: block;
+  padding: 7px 24px;
+  color: #42473C;
   font-size: 14px;
-  line-height: 1.8;
-  padding: 6px 24px;
-  border-right: 2px solid transparent;
-  transition: color .15s, border-color .15s;
+  line-height: 1.6;
+  border-right: none;
+  transition: background .15s, color .15s;
 }
-.sidebar ul li a:hover {
-  color: var(--green);
-  text-decoration: none;
-}
+.sidebar ul li a:hover { color: var(--green); background: #F3EFE3; text-decoration: none; }
 .sidebar ul li.active > a {
   color: var(--seal);
   font-weight: 700;
-  border-right: 2px solid var(--seal);
+  background: var(--green-soft);
+  border-left: 3px solid var(--seal);
+  padding-left: 21px;
+  border-right: none;
 }
-.sidebar p {
-  margin: 18px 24px 6px;
-  font-size: 12px;
-  letter-spacing: .12em;
-  color: var(--muted);
-}
+.sidebar ul li ul { padding: 2px 0 8px; }
 .sidebar ul li ul li a {
+  padding: 5px 24px 5px 42px;
   font-size: 13px;
-  padding-left: 36px;
+  color: #7C8172;
+}
+.sidebar ul li ul li a::before { content: none; }
+.sidebar ul li ul li.active > a {
+  border-left: none;
+  padding-left: 42px;
+  background: transparent;
+  color: var(--seal);
 }
 
-/* ---------- 正文 ---------- */
-.content {
-  background: transparent;
-  left: 300px;
+/* 分组标签（**加粗** 段落） */
+.sidebar p {
+  margin: 22px 24px 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: #9AA08F;
 }
+
+/* ============ 正文 ============ */
+.content { background: transparent; }
 .markdown-section {
-  max-width: 820px;
+  max-width: 780px;
   margin: 0 auto;
-  padding: 44px 48px 96px;
-  font-size: 15.5px;
-  line-height: 1.85;
-  color: var(--ink);
+  padding: 48px 56px 120px;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text);
+  letter-spacing: .01em;
 }
+.markdown-section p { margin: 1.1em 0; }
 .markdown-section h1 {
   font-size: 30px;
   font-weight: 800;
-  letter-spacing: .02em;
-  margin: 0 0 22px;
+  letter-spacing: .03em;
+  line-height: 1.35;
+  margin: 0 0 .9em;
 }
 .markdown-section h2 {
-  font-size: 21px;
+  position: relative;
+  font-size: 22px;
   font-weight: 700;
-  margin-top: 40px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--line);
+  letter-spacing: .02em;
+  margin: 2.4em 0 .9em;
+  padding-left: 14px;
+  border-bottom: none;
+}
+.markdown-section h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .18em;
+  bottom: .18em;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--green);
 }
 .markdown-section h3 {
-  font-size: 17px;
+  font-size: 17.5px;
   font-weight: 700;
-  margin-top: 28px;
+  margin: 2em 0 .7em;
 }
+.markdown-section h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 1.6em 0 .6em;
+}
+.markdown-section ul,
+.markdown-section ol { padding-left: 1.6em; }
+.markdown-section li { margin: .4em 0; }
+
 .markdown-section a {
   color: var(--green);
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px solid rgba(31, 77, 58, .35);
+  border-bottom: 1px dashed rgba(31, 77, 58, .45);
 }
 .markdown-section a:hover {
   color: var(--seal);
   border-bottom-color: rgba(194, 64, 42, .5);
 }
+
 .markdown-section blockquote {
-  margin: 18px 0;
-  padding: 10px 18px;
+  margin: 1.4em 0;
+  padding: 12px 20px;
   border-left: 3px solid var(--green);
-  background: #EEF2EA;
-  color: #4A5245;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 12px 12px 0;
+  background: #EEF2E8;
+  color: #46503F;
 }
-.markdown-section blockquote p {
-  margin: 0;
-}
-.markdown-section code {
-  background: #EFEBDD;
-  color: #8C2F1F;
-  border-radius: 4px;
-  font-size: .9em;
-  padding: 2px 6px;
-  font-family: "JetBrains Mono", Menlo, Monaco, monospace;
-}
-.markdown-section pre {
-  background: #262B23;
-  border-radius: 12px;
-  box-shadow: 0 14px 30px -24px rgba(35, 39, 30, .6);
-}
-.markdown-section pre > code {
-  background: transparent;
-  color: #E8E4D8;
-  font-size: 13.5px;
-  line-height: 1.7;
-  padding: 18px 20px;
-  font-family: "JetBrains Mono", Menlo, Monaco, monospace;
-}
-.markdown-section table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 14px;
-}
-.markdown-section th {
-  background: #EFEBDD;
-  color: var(--ink);
-  font-weight: 700;
-}
-.markdown-section th,
-.markdown-section td {
-  border: 1px solid var(--line);
-  padding: 8px 12px;
-}
-.markdown-section tr:nth-child(2n) {
-  background: #FBF8F0;
-}
+.markdown-section blockquote p { margin: .3em 0; }
+
 .markdown-section hr {
   border: none;
   border-top: 1px solid var(--line);
-  margin: 32px 0;
+  margin: 2.6em 0;
 }
 
-/* ---------- 搜索 ---------- */
-.search input {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 8px;
+/* 表格 */
+.markdown-section table {
+  width: 100%;
+  margin: 1.4em 0;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+.markdown-section th {
+  background: #EEF2E8;
   color: var(--ink);
-  padding: 8px 12px;
-  margin: 10px 20px;
-  width: calc(100% - 40px);
-}
-.search input:focus {
-  outline: 2px solid var(--green);
-  outline-offset: 0;
-}
-.search .results-panel {
-  color: var(--ink);
-}
-.search .matching-post {
-  border-bottom: 1px solid var(--line);
-}
-.search h2 {
-  color: var(--seal);
-  font-size: 14px;
-  margin: 8px 0 4px;
-}
-.search p {
-  color: var(--muted);
-  font-size: 12.5px;
-  margin: 0 0 10px;
-}
-.search .search-keyword {
-  color: var(--seal);
   font-weight: 700;
+  border: 1px solid var(--line);
+  padding: 9px 14px;
+  text-align: left;
+}
+.markdown-section td {
+  border: 1px solid var(--line);
+  padding: 9px 14px;
+}
+.markdown-section tr:nth-child(2n) td { background: #FBF8F0; }
+
+/* ============ 代码（浅色纸感 + 彩色语法） ============ */
+.markdown-section code {
+  background: #EFEBDD;
+  color: #9A3B22;
+  border-radius: 5px;
+  padding: 2px 6px;
+  font-size: .88em;
+  font-family: "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+}
+.markdown-section pre {
+  position: relative;
+  overflow: hidden;
+  background: var(--code-bg);
+  border: 1px solid var(--code-line);
+  border-radius: 12px;
+  margin: 1.3em 0;
+  box-shadow: 0 10px 24px -22px rgba(35, 39, 30, .45);
+}
+.markdown-section pre > code {
+  display: block;
+  background: transparent;
+  color: #3A3F35;
+  font-size: 13.5px;
+  line-height: 1.75;
+  padding: 18px 22px;
+  border-radius: 12px;
+  font-family: "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+}
+.markdown-section pre[data-lang]::after {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 3px 12px;
+  font-size: 11px;
+  color: #8B8F7E;
+  background: #F3ECD9;
+  border-radius: 0 11px 0 10px;
 }
 
-/* ---------- 响应式 ---------- */
+/* Prism 配色（浅色） */
+.markdown-section .token.comment,
+.markdown-section .token.prolog,
+.markdown-section .token.doctype,
+.markdown-section .token.cdata {
+  color: #8B8F7E;
+  font-style: italic;
+}
+.markdown-section .token.punctuation { color: #5A5F52; }
+.markdown-section .token.property,
+.markdown-section .token.tag,
+.markdown-section .token.constant,
+.markdown-section .token.symbol,
+.markdown-section .token.deleted { color: #B23B2A; }
+.markdown-section .token.boolean,
+.markdown-section .token.number { color: #8A6D1F; }
+.markdown-section .token.selector,
+.markdown-section .token.attr-name,
+.markdown-section .token.string,
+.markdown-section .token.char,
+.markdown-section .token.builtin,
+.markdown-section .token.inserted { color: #A03B24; }
+.markdown-section .token.operator,
+.markdown-section .token.entity,
+.markdown-section .token.url { color: #6E7366; }
+.markdown-section .token.atrule,
+.markdown-section .token.attr-value,
+.markdown-section .token.keyword { color: var(--green); font-weight: 600; }
+.markdown-section .token.function,
+.markdown-section .token.class-name { color: #2E6F8E; }
+.markdown-section .token.regex,
+.markdown-section .token.important,
+.markdown-section .token.variable { color: #8A6D1F; }
+
+/* ============ 搜索 ============ */
+.search .results-panel { color: var(--text); }
+.search .matching-post { border-bottom: 1px solid var(--line); }
+.search h2 { color: var(--seal); font-size: 13.5px; margin: 10px 0 4px; }
+.search p { color: var(--muted); font-size: 12.5px; margin: 0 0 10px; }
+.search .search-keyword { color: var(--seal); font-weight: 700; }
+
+/* ============ 响应式 ============ */
 @media screen and (max-width: 768px) {
   .markdown-section {
-    padding: 24px 20px 64px;
-    font-size: 15px;
+    padding: 24px 20px 72px;
+    font-size: 15.5px;
   }
-  .sidebar .app-name {
-    border-bottom: none;
-  }
+  .sidebar .app-name { border-bottom: none; }
 }
